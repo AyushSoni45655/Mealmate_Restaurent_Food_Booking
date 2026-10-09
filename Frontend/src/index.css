@@ -1,0 +1,116 @@
+/* ===== IMPORTS (must be first, consecutive, no code between them) ===== */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap');
+
+/* ===== THEME VARIABLES (Tailwind v4 style) ===== */
+:root {
+  --font-heading: "Poppins", sans-serif;
+  --font-body: "Inter", sans-serif;
+
+  --color-primary: #FF416C;
+  --color-primary-hover: #E62E58;
+  --color-secondary: #2E7D32;
+
+  --color-background: #FFF8F5;
+  --color-surface: #FFFFFF;
+
+  --color-text-dark: #1A1A1A;
+  --color-text-body: #4B4B4B;
+  --color-text-muted: #8A8A8A;
+
+  --color-border: #EAEAEA;
+  --color-success: #22C55E;
+  --color-warning: #F59E0B;
+  --color-error: #EF4444;
+
+  --gradient-primary: linear-gradient(135deg, #FF416C 0%, #FF4B2B 100%);
+  --gradient-background: linear-gradient(135deg, #FFE5D9 0%, #FFCAB1 50%, #FFB199 100%);
+}
+
+/* ===== GLOBAL BASE STYLES ===== */
+body {
+  background: var(--gradient-background);
+  background-attachment: fixed;
+  color: var(--color-text-body);
+  font-family: "Inter", sans-serif;
+  min-height: 100vh;
+  margin: 0;
+}
+
+h1, h2 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  color: var(--color-text-dark);
+}
+
+h3, h4 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  color: var(--color-text-dark);
+}
+
+p {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  color: var(--color-text-body);
+}
+
+.navs {
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  color: var(--color-text-dark);
+}
+
+button {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  background: var(--gradient-primary);
+  color: #FFFFFF;
+  padding: 0.6rem 1.2rem;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.2s ease, transform 0.15s ease;
+}
+
+button:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+.spacing{
+  width: 83%;
+ 
+  height: fit-content;
+  margin: auto;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;     /* Firefox */
+}
+.shadow{
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+
+/* loading here */
+
+/* HTML: <div class="loader"></div> */
+.loader {
+  width: 50px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: 
+    radial-gradient(farthest-side,#ffa516 94%,#0000) top/8px 8px no-repeat,
+    conic-gradient(#0000 30%,#ffa516);
+  -webkit-mask: radial-gradient(farthest-side,#0000 calc(100% - 8px),#000 0);
+  animation: l13 1s infinite linear;
+}
+@keyframes l13{ 
+  100%{transform: rotate(1turn)}
+}
+
+@import "tailwindcss";
