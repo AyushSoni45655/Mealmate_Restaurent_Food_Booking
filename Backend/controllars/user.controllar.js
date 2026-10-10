@@ -65,7 +65,7 @@ const signUp = async (req, res) => {
     const hashedPassword = await hashPassword(password);
     const otp = Math.floor(100000 + Math.random() * 900000);
     const hashedOtp = await hashPassword(otp.toString());
-    console.log(otp);
+    
     
     const newUser = await UserModel.create({
       name,
@@ -89,7 +89,7 @@ const signUp = async (req, res) => {
       sameSite: "strict",
       maxAge: 30 * 24 * 60 * 60 * 1000,
     });
-    console.log("My otp",otp);
+    
 
     
     try {
