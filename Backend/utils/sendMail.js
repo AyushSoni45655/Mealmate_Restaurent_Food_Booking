@@ -1,27 +1,34 @@
-import nodemailer from 'nodemailer';
 import dotenv from 'dotenv';
 dotenv.config();
 
-const transporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: process.env.EMAIL_USER,      // aapka gmail address
-    pass: process.env.EMAIL_APP_PASSWORD  // Gmail App Password (normal password nahi!)
-  }
-});
+
 
 
 const sendEmail = async ({ to, subject, html }) => {
   try {
-    
-    const info = await transporter.sendMail({
-      from: `"MealMate" <${process.env.EMAIL_USER}>`,
-      to,
-      subject,
-      html
+    const res = await fetch("https://api.brevo.com/v3/smtp/email", {
+      method: "POST",
+      headers: {
+        accept: "application/json",
+        "content-type": "application/json",
+        "api-key": process.env.BREVO_API_KEY,
+      },
+      body: JSON.stringify({
+        sender: { name: "MealMate", email: process.env.EMAIL_USER },
+        to: [{ email: to }],
+        subject,
+        htmlContent: html,
+      }),
     });
-    console.log('Email sent:', info.messageId);
-    return info;
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      throw new Error(data.message || "Brevo API error");
+    }
+
+    console.log("Email sent:", data.messageId);
+    return data;
   } catch (e) {
     console.log(`Email sending failed: ${e.message}`);
     throw new Error("Failed to send email");
@@ -29,6 +36,8 @@ const sendEmail = async ({ to, subject, html }) => {
 };
 
 export default sendEmail;
+
+
 
 // templates/emailTemplates.js
 
